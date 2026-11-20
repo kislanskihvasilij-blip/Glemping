@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+:root {
+  /* Палитра: ночной лес, ткань шатра, свет фонаря */
+  --night: #0a0d0b;
+  --forest: #111814;
+  --pine: #1b2620;
+  --canvas: #e6d8bd;
+  --sand: #f4eee3;
+  --ember: #ff8a3d;
+  --moss: #9db398;
+  --stone: #9aa39c;
+
+  --radius: 20px;
+  --background: var(--night);
+  --foreground: var(--sand);
+  --border: rgb(244 238 227 / 0.1);
+}
+
+@theme inline {
+  --color-night: var(--night);
+  --color-forest: var(--forest);
+  --color-pine: var(--pine);
+  --color-canvas: var(--canvas);
+  --color-sand: var(--sand);
+  --color-ember: var(--ember);
+  --color-moss: var(--moss);
+  --color-stone: var(--stone);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
+
+  --radius-lg: var(--radius);
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+
+  --text-display: clamp(3rem, 9.5vw, 8.5rem);
+  --text-display--line-height: 0.92;
+  --text-display--letter-spacing: -0.045em;
+  --text-heading: clamp(2.25rem, 5.5vw, 4.75rem);
+  --text-heading--line-height: 1;
+  --text-heading--letter-spacing: -0.04em;
+  --text-title: clamp(1.375rem, 2.4vw, 1.875rem);
+  --text-title--line-height: 1.15;
+  --text-title--letter-spacing: -0.02em;
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1;
+  --text-eyebrow--letter-spacing: 0.32em;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  /* clip, а не hidden — не ломает position: sticky */
+  overflow-x: clip;
+  background: var(--night);
+  color: var(--sand);
+}
+
+:where(a, button, input, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+::selection {
+  background: var(--ember);
+  color: var(--night);
+}
+
+/* Плотная ткань шатра: переплетение нитей + мягкая светотень */
+.canvas-fabric {
+  background-color: #d9c7a4;
+  background-image:
+    repeating-linear-gradient(0deg, rgb(0 0 0 / 0.035) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgb(255 255 255 / 0.05) 0 1px, transparent 1px 4px),
+    radial-gradient(120% 90% at 50% 100%, rgb(255 170 90 / 0.35), transparent 60%),
+    linear-gradient(180deg, #c9b38a 0%, #e3d3b2 45%, #b99c6c 100%);
+}
+
+/* Топографические линии для фона «путешествия» */
+.topo {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600' viewBox='0 0 600 600' fill='none' stroke='%23f4eee3' stroke-opacity='.07' stroke-width='1'%3E%3Cpath d='M-20 120c80-40 160 30 240 0s140-80 220-50 120 60 180 30'/%3E%3Cpath d='M-20 170c90-40 150 40 250 5s140-70 210-40 130 55 180 25'/%3E%3Cpath d='M-20 230c70-30 170 50 260 10s130-60 200-35 140 50 180 25'/%3E%3Cpath d='M-20 300c100-50 160 40 240 10s150-70 230-40 110 40 170 20'/%3E%3Cpath d='M-20 370c80-30 150 50 250 15s140-60 210-30 120 45 180 20'/%3E%3Cpath d='M-20 440c90-40 170 30 250 0s130-70 210-40 120 60 180 30'/%3E%3Cpath d='M-20 510c70-40 160 40 250 10s150-60 220-35 110 50 170 25'/%3E%3Ccircle cx='420' cy='260' r='40'/%3E%3Ccircle cx='420' cy='260' r='75'/%3E%3Ccircle cx='420' cy='260' r='115'/%3E%3C/svg%3E");
+  background-size: 600px 600px;
+}
+
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
