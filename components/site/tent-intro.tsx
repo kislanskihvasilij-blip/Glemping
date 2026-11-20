@@ -13,7 +13,7 @@ const LEFT_FLAP = "polygon(50% 0, 50% 100%, 0 100%)"
 const RIGHT_FLAP = "polygon(50% 0, 100% 100%, 50% 100%)"
 
 /**
- * Интро: камера внутри шатра. Молния расстёгивается, полы расходятся,
+ * Интро: камера внутри шатра. Шатёр открывается: полы расходятся,
  * камера пролетает сквозь вход к горам и шатрам ATLAS.
  */
 export function TentIntro({ t, ctaHref }: { t: Dict["intro"]; ctaHref: string }) {
@@ -21,7 +21,7 @@ export function TentIntro({ t, ctaHref }: { t: Dict["intro"]; ctaHref: string })
   const reduce = useReducedMotion()
   const { scrollYProgress: p } = useScroll({ target: ref, offset: ["start start", "end end"] })
 
-  // Автоматическое «расстёгивание» молнии при загрузке
+  // Автоматическое открытие молнии при загрузке
   const zip = useMotionValue(0)
   useEffect(() => {
     const controls = animate(zip, 1, { duration: 1.5, delay: 0.35, ease: [0.65, 0, 0.35, 1] })

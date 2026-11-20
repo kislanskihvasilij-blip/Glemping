@@ -30,7 +30,7 @@ export const en: Dict = {
   },
   intro: {
     eyebrow: "Glamping across seven worlds",
-    title: ["Unzip", "the world."],
+    title: ["Open", "the world."],
     lead: "Seven places on Earth where nature is the main show and comfort rivals a five-star hotel. No roughing it, no neighbours behind the wall, no compromises.",
     hint: "Scroll — the tent will open",
     tag: "N 43°21′ · E 42°26′ · 2,340 m",
